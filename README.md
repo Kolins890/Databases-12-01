@@ -143,3 +143,48 @@ employees ↔ projects: многие ко многим (Many-to-Many).
 Один сотрудник может быть назначен на несколько проектов, и один проект может включать нескольких сотрудников.
 
 Реализуется через связующую таблицу employee_projects.
+
+```sql
+CREATE TABLE department_types (
+    type_id SERIAL PRIMARY KEY,
+    type_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE departments (
+    department_id SERIAL PRIMARY KEY,
+    department_name VARCHAR(100) NOT NULL UNIQUE,
+    type_id INTEGER NOT NULL REFERENCES department_types(type_id)
+);
+
+CREATE TABLE positions (
+    position_id SERIAL PRIMARY KEY,
+    position_name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE branch_addresses (
+    address_id SERIAL PRIMARY KEY,
+    address TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    salary DECIMAL(10,2) NOT NULL,
+    position_id INTEGER NOT NULL REFERENCES positions(position_id),
+    department_id INTEGER NOT NULL REFERENCES departments(department_id),
+    hire_date DATE NOT NULL,
+    branch_address_id INTEGER NOT NULL REFERENCES branch_addresses(address_id)
+);
+
+CREATE TABLE projects (
+    project_id SERIAL PRIMARY KEY,
+    project_name VARCHAR(200) NOT NULL UNIQUE
+);
+
+CREATE TABLE employee_projects (
+    assignment_id SERIAL PRIMARY KEY,
+    employee_id INTEGER NOT NULL REFERENCES employees(employee_id),
+    project_id INTEGER NOT NULL REFERENCES projects(project_id),
+    assigned_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
