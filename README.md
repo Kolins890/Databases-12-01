@@ -144,6 +144,9 @@ employees ↔ projects: многие ко многим (Many-to-Many).
 
 Реализуется через связующую таблицу employee_projects.
 
+<img width="1126" height="573" alt="image" src="https://github.com/user-attachments/assets/2a3f3c39-8a78-40e8-9f64-0673e7e09b85" />
+
+
 ```sql
 CREATE TABLE department_types (
     type_id SERIAL PRIMARY KEY,
