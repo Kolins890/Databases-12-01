@@ -144,6 +144,9 @@ employees ↔ projects: многие ко многим (Many-to-Many).
 
 Реализуется через связующую таблицу employee_projects.
 
+<img width="1366" height="547" alt="image" src="https://github.com/user-attachments/assets/d48786d7-363f-46a6-a698-ab5354575d2a" />
+
+
 
 
 
